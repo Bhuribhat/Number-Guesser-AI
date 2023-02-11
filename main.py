@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from PIL import ImageGrab
 from constant import *
 
+
 # create a folder if not exist
 if not os.path.exists('./saved_images'):
     os.mkdir('./saved_images')
@@ -87,17 +88,18 @@ def predict():
 
     # Probability of all numbers
     predictions = model.predict(image)
-    top_3_idx = np.argsort(predictions[0])[-3:]
+    top_three = np.argsort(predictions[0])[-3:]
+    display_text = f"Prediction = {top_three[-1]}\n"
 
     # print("Probability", predictions[0])
-    for idx, value in enumerate(top_3_idx[::-1]):
-        percent = round(predictions[0][value] * 100, 2)
+    for idx, value in enumerate(top_three[::-1]):
+        percent = predictions[0][value]
         print(f"{idx + 1}. Predict {value} with probability = {percent}%")
 
-    # Prediction
-    text = f"Prediction = {np.argmax(predictions[0])}"
-    status.configure(text=text, fg="deepskyblue")
-    print(f"\n{text}")
+    # Prediction: np.argmax(predictions[0])
+    percent = predictions[0][top_three[-1]] * 100
+    display_text += f"\nProbabillity = {percent:.0f}%"
+    status.configure(text=display_text, fg="deepskyblue")
 
 
 if __name__ == '__main__':

@@ -18,10 +18,9 @@ This program trains AI on MNIST digit data set. It allows the user to draw a num
 >> py main.py
 ```
 
-<!-- <p align="left">
-    <img src="./assets/path_gameplay.png" height="400" />
-    <img src="./assets/path_finding.png" height="400" />
-</p> -->
+<p align="left">
+    <img src="./assets/prediction.png" height="400" />
+</p>
 
 
 ## Resource
