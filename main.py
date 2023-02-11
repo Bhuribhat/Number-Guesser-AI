@@ -23,14 +23,14 @@ def get_label_name():
 
 
 def draw_line(event):
-    x1, y1 = (event.x - MARKER_SIZE // 2), (event.y - MARKER_SIZE // 2)
-    x2, y2 = (event.x + MARKER_SIZE // 2), (event.y + MARKER_SIZE // 2)
+    x1, y1 = (event.x - MARKER_SIZE), (event.y - MARKER_SIZE)
+    x2, y2 = (event.x + MARKER_SIZE), (event.y + MARKER_SIZE)
     canvas.create_rectangle(x1, y1, x2, y2, fill=WHITE, outline=WHITE)
 
 
 def erase_line(event):
-    x1, y1 = (event.x - MARKER_SIZE // 2), (event.y - MARKER_SIZE // 2)
-    x2, y2 = (event.x + MARKER_SIZE // 2), (event.y + MARKER_SIZE // 2)
+    x1, y1 = (event.x - MARKER_SIZE), (event.y - MARKER_SIZE)
+    x2, y2 = (event.x + MARKER_SIZE), (event.y + MARKER_SIZE)
     canvas.create_rectangle(x1, y1, x2, y2, fill=DARK, outline=DARK)
 
 
