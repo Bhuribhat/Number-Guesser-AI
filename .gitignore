@@ -131,6 +131,6 @@ dmypy.json
 # Folder config file
 [Dd]esktop.ini
 
-gray.png
-
-input.png
+# saved image from save function
+gray_*.png
+resized_*.png
