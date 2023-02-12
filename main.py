@@ -49,23 +49,25 @@ def save_image():
     fig = plt.figure(figsize=(12, 8))
     name1, name2 = get_label_name()
 
-    # save original image 500 x 500
+    # Grab image and apply opening
+    kernel = np.ones((5, 5), np.uint8)
     image = ImageGrab.grab((x1, y1, x2, y2))
     image = np.array(image)
+    image = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
     
     # convert white to gray scale image
     fig.add_subplot(1, 2, 1)
     gray_image = tf.image.rgb_to_grayscale(image)
     cv2.imwrite(f'./saved_images/{name1}', gray_image.numpy())
     plt.imshow(gray_image.numpy(), cmap='gray')
-    plt.title(f"500x500 of {image_name.get()}")
+    plt.title(f"{WIDTH}x{HEIGHT} of {name1}")
 
     # save gray scale image 28 x 28
     fig.add_subplot(1, 2, 2)
-    resize_image = tf.image.resize(gray_image, (28, 28), method='nearest')
+    resize_image = tf.image.resize(gray_image, (28, 28), method='bilinear')
     cv2.imwrite(f'./saved_images/{name2}', resize_image.numpy())
     plt.imshow(resize_image.numpy(), cmap='gray')
-    plt.title(f"28x28 of {image_name.get()}")
+    plt.title(f"28x28 of {name2}")
     plt.show()
 
 
@@ -75,12 +77,14 @@ def predict():
     x2 = x1 + canvas.winfo_width()
     y2 = y1 + canvas.winfo_height()
 
+    kernel = np.ones((5, 5), np.uint8)
     image = ImageGrab.grab((x1, y1, x2, y2))
     image = np.array(image)
+    image = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
 
     # image = tf.keras.utils.array_to_img(image)
     image = tf.image.rgb_to_grayscale(image)
-    image = tf.image.resize(image, (28, 28), method='nearest')
+    image = tf.image.resize(image, (28, 28), method='bilinear')
 
     # load model: input shape = (1, 28, 28)
     image = tf.reshape(image, (1, 28, 28))
@@ -89,7 +93,6 @@ def predict():
     # Probability of all numbers
     predictions = model.predict(image)
     top_three = np.argsort(predictions[0])[-3:]
-    display_text = f"Prediction = {top_three[-1]}\n"
 
     # print("Probability", predictions[0])
     for idx, value in enumerate(top_three[::-1]):
@@ -97,8 +100,10 @@ def predict():
         print(f"{idx + 1}. Predict {value} with probability = {percent}%")
 
     # Prediction: np.argmax(predictions[0])
+    display_text = f"Prediction = {top_three[-1]}\n"
     percent = predictions[0][top_three[-1]] * 100
-    display_text += f"\nProbabillity = {percent:.0f}%"
+
+    # display_text += f"\nProbabillity = {percent:.0f}%"
     status.configure(text=display_text, fg="deepskyblue")
 
 

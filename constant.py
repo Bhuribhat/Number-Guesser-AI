@@ -2,8 +2,8 @@ from tkinter import *
 
 # constants
 RATIO  = 28
-WIDTH  = 500
-HEIGHT = 500
+WIDTH  = 560
+HEIGHT = 560
 
 MARKER_SIZE = (WIDTH // RATIO)
 
