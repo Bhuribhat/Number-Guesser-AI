@@ -5,7 +5,7 @@ RATIO  = 28
 WIDTH  = 560
 HEIGHT = 560
 
-MARKER_SIZE = (WIDTH // RATIO)
+MARKER_SIZE = (WIDTH + HEIGHT) // (2 * RATIO)
 
 # colors
 GRAY   = "#545454"
@@ -46,6 +46,9 @@ class CustomEntry(Entry):
     def set(self, text):
         self.delete(0, END)
         self.insert(0, text)
+
+    def clear(self):
+        self.delete(0, END)
 
 
 class CustomLabel(Label):

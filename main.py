@@ -36,8 +36,8 @@ def erase_line(event):
 
 def erase_canvas():
     canvas.delete("all")
-    status.configure(text="Please draw a number!", fg="deepskyblue")
-    image_name.delete(0, END)
+    status.configure(text="Please draw a number!")
+    image_name.clear()
 
 
 def save_image():
@@ -96,15 +96,15 @@ def predict():
 
     # print("Probability", predictions[0])
     for idx, value in enumerate(top_three[::-1]):
-        percent = predictions[0][value]
-        print(f"{idx + 1}. Predict {value} with probability = {percent}%")
+        percent = 100 * predictions[0][value]
+        print(f"{idx + 1}. Predict {value} with probability = {percent:.0f}%")
 
     # Prediction: np.argmax(predictions[0])
     display_text = f"Prediction = {top_three[-1]}\n"
     percent = predictions[0][top_three[-1]] * 100
 
     # display_text += f"\nProbabillity = {percent:.0f}%"
-    status.configure(text=display_text, fg="deepskyblue")
+    status.configure(text=display_text)
 
 
 if __name__ == '__main__':
