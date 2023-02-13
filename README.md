@@ -19,7 +19,8 @@ This program trains AI on MNIST digit data set. It allows the user to draw a num
 ```
 
 <p align="left">
-    <img src="./assets/prediction.png" height="400" />
+    <img src="./assets/prediction1.png" height="400" />
+    <img src="./assets/prediction2.png" height="400" />
 </p>
 
 
