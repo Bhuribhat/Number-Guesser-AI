@@ -23,7 +23,7 @@ This program trains model on MNIST digit data set. It allows the user to draw a 
     <img src="./assets/prediction2.png" height="400" />
 </p>
 
-The model predicts a digit by grabbing a drawing in a __560x560__ canvas, then resize it to a __28x28__ pixels.  
+The model predicts a digit by grabbing a drawing in a __560x560__ canvas, then resize it to a __28x28__ pixels to pass it as a input to the model.  
 
 <img src="./assets/tutorial.png" height="300" />
 
