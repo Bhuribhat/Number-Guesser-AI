@@ -1,6 +1,6 @@
 # Number Guesser AI
 
-This program trains AI on MNIST digit data set. It allows the user to draw a number on the screen and have the AI take a guess of which digit it is. This uses a **convolutional neural network** model and Tensorflow.  
+This program trains model on MNIST digit data set. It allows the user to draw a number on the screen and have the model take a guess of which digit it is. This uses a **convolutional neural network** model and Tensorflow.  
 
 **Instruction:**  
 
@@ -22,6 +22,10 @@ This program trains AI on MNIST digit data set. It allows the user to draw a num
     <img src="./assets/prediction1.png" height="400" />
     <img src="./assets/prediction2.png" height="400" />
 </p>
+
+The model predicts a digit by grabbing a drawing in a __560x560__ canvas, then resize it to a __28x28__ pixels.  
+
+<img src="./assets/tutorial.png" height="300" />
 
 
 ## Resource
